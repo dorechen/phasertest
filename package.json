@@ -1,0 +1,12 @@
+{
+  "name": "phasertest",
+  "version": "1.0.0",
+  "description": "try using phaser",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "global": "^4.4.0",
+    "http-server": "^0.12.3",
+    "phaser": "^3.24.1"
+  }
+}

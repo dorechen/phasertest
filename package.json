@@ -4,6 +4,9 @@
   "description": "try using phaser",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "start": "http-server"
+  },
   "dependencies": {
     "http-server": "^0.12.3",
     "phaser": "^3.24.1"

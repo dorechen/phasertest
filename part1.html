@@ -23,7 +23,7 @@
       physics: {
         default: 'arcade',
         arcade: {
-          gravity: { y: 300 },
+          allowGravity: false,
           debug: false
         }
       },
@@ -49,7 +49,10 @@
 
     function create() {
       this.add.image(400, 300, 'sky');
-      this.add.image(400, 300, 'star');
+      // this.add.image(400, 300, 'star');
+      star = this.physics.add.staticGroup();
+      star.create(400, 300, 'star');
+
       platforms = this.physics.add.staticGroup();
 
       platforms.create(400, 568, 'ground').setScale(2).refreshBody();
@@ -58,9 +61,10 @@
       platforms.create(50, 250, 'ground');
       platforms.create(750, 220, 'ground');
 
-      player = this.physics.add.sprite(100, 450, 'dude');
+      player = this.physics.add.sprite(400, 150, 'dude');
+      // name = this.add.text(10, 10, 'name here@')
+      // player.add.text(10, 10, 'name here@')
 
-      player.setBounce(0.2);
       player.setCollideWorldBounds(true);
 
       this.anims.create({
@@ -84,6 +88,8 @@
       });
 
       this.physics.add.collider(player, platforms);
+      this.physics.add.collider(player, star);
+
     }
 
     function update() {
@@ -98,15 +104,21 @@
         player.setVelocityX(160);
 
         player.anims.play('right', true);
+      } else if (cursors.up.isDown) {
+        player.setVelocityY(-160);
+
+        // player.anims.play('up', true);
+      }
+      else if (cursors.down.isDown) {
+        player.setVelocityY(160);
+
+        // player.anims.play('down', true);
       }
       else {
         player.setVelocityX(0);
+        player.setVelocityY(0);
 
         player.anims.play('turn');
-      }
-
-      if (cursors.up.isDown && player.body.touching.down) {
-        player.setVelocityY(-330);
       }
     }
 
